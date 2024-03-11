@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { router, useForm } from "@inertiajs/vue3";
-import { Head } from '@inertiajs/vue3'
+import { Head } from "@inertiajs/vue3";
 
 defineProps<{
     slots: string[];
@@ -19,15 +19,21 @@ const booking: any = useForm({
 const handleChange = (e: any) => {
     const date = new Date(e.target.value);
     if ([0, 6].includes(date.getDay())) {
-        alert("We're closed on the weekends!");
+        alert("We're closed on the weekends");
         booking.bookOn = "";
         return;
     }
 };
+
+const handleAlert = (message: string) => {
+    if (!message) return;
+    alert(message);
+};
 </script>
 
 <template>
-    <Head title="Slots"/>
+    <Head title="Slots" />
+    {{ handleAlert($page.props.flash.message) }}
     <main class="flex justify-center items-center">
         <section>
             <form
@@ -105,7 +111,11 @@ const handleChange = (e: any) => {
                     </div>
                 </div>
                 <div>
-                    <button class="w-full py-1 px-4 border" type="submit" :disabled="booking.processing">
+                    <button
+                        class="w-full py-1 px-4 border"
+                        type="submit"
+                        :disabled="booking.processing"
+                    >
                         Submit
                     </button>
                 </div>

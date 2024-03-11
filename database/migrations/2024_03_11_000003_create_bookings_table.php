@@ -17,6 +17,13 @@ return new class extends Migration
             $table->string('vehicle_make');
             $table->string('vehicle_model');
             $table->dateTime('booked_on')->useCurrent();
+            $table->string('started_at');
+            $table->string('ended_at');
+            $table->boolean('customer_confirmed')->default(false);
+            $table->boolean('admin_confirmed')->default(false);
+            $table->boolean('is_pending')->default(true);
+            $table->boolean('is_confirmed')->default(false);
+            $table->boolean('is_cancelled')->default(false);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');

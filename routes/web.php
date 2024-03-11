@@ -37,5 +37,5 @@ use Inertia\Inertia;
 
 // require __DIR__.'/auth.php';
 
-Route::get('/', SlotsController::class);
-Route::post('/book', [SlotsController::class, 'book'])->name('book');
+Route::get('/', [SlotsController::class, 'index'])->name('slots.index');
+Route::post('/book', [SlotsController::class, 'book'])->name('slots.book');

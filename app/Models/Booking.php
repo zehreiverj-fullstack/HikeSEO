@@ -23,6 +23,9 @@ class Booking extends Model
         'customer_id',
         'vehicle_make',
         'vehicle_model',
+        'booked_on',
+        'started_at',
+        'ended_at',
     ];
 
     public function customer(): HasOne
