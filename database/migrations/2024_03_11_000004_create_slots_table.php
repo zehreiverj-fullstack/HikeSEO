@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('slots', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('book_id');
-            $table->dateTime('started_at');
-            $table->dateTime('ended_at');
+            $table->string('started_at');
+            $table->string('ended_at');
             $table->boolean('customer_confirmed')->default(false);
             $table->boolean('admin_confirmed')->default(false);
             $table->boolean('is_pending')->default(true);

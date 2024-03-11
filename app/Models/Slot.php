@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Slots extends Model
+class Slot extends Model
 {
     use HasFactory;
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -16,6 +19,7 @@ class Slots extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'book_id',
         'started_at',
         'ended_at',
