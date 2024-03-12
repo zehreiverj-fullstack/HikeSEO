@@ -35,8 +35,9 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'flash' => [
-                'message' => session('message')
-            ]
+                'message' => session('message'),
+                'isSuccess' => session('isSuccess')
+            ],
         ];
     }
 }

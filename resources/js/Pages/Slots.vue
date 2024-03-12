@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { router, useForm } from "@inertiajs/vue3";
+import moment from "moment";
+import { router, useForm, usePage } from "@inertiajs/vue3";
 import { Head } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 defineProps<{
     slots: string[];
@@ -17,29 +19,39 @@ const booking: any = useForm({
 });
 
 const handleChange = (e: any) => {
-    const date = new Date(e.target.value);
-    if ([0, 6].includes(date.getDay())) {
+    const date = moment(e.target.value);
+    if ([0, 6].includes(date.day())) {
         alert("We're closed on the weekends");
         booking.bookOn = "";
         return;
     }
 };
 
-const handleAlert = (message: string) => {
-    if (!message) return;
+const page = usePage();
+//@ts-ignore
+const message = computed(() => page.props.flash.message);
+const isSuccess = computed(() => page.props.flash.isSuccess);
+
+const handleSubmit = (message: string, isSuccess: boolean) => {
+    if (isSuccess) booking.reset();
     alert(message);
 };
 </script>
 
 <template>
     <Head title="Slots" />
-    {{ handleAlert($page.props.flash.message) }}
     <main class="flex justify-center items-center">
         <section>
             <form
                 class="flex flex-col flex-nowrap gap-4"
                 method="post"
-                @submit.prevent="router.post('book', booking)"
+                @submit.prevent="
+                    router.post('book', booking, {
+                        onSuccess: () => {
+                            handleSubmit(message, isSuccess);
+                        },
+                    })
+                "
             >
                 <div>
                     <div>

@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->uuid('customer_id');
+            $table->uuid('user_id');
             $table->string('vehicle_make');
             $table->string('vehicle_model');
-            $table->dateTime('booked_on')->useCurrent();
+            $table->date('booked_on')->useCurrent();
             $table->string('started_at');
             $table->string('ended_at');
-            $table->boolean('customer_confirmed')->default(false);
+            $table->boolean('user_confirmed')->default(false);
             $table->boolean('admin_confirmed')->default(false);
             $table->boolean('is_pending')->default(true);
             $table->boolean('is_confirmed')->default(false);
             $table->boolean('is_cancelled')->default(false);
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

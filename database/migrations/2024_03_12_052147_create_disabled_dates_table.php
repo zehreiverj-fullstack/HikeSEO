@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email_address')->unique();
-            $table->string('phone_number');
+        Schema::create('disabled_dates', function (Blueprint $table) {
+            $table->ulid('id')->primary();
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('disabled_dates');
     }
 };

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SlotsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,15 @@ use Inertia\Inertia;
 
 Route::get('/', [SlotsController::class, 'index'])->name('slots.index');
 Route::post('/book', [SlotsController::class, 'book'])->name('slots.book');
+Route::get('{bookingId}/confirmation/{userId}', [SlotsController::class, 'confirmation'])->name('slots.confirmation');
+
+Route::controller(AdminController::class)->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', 'index')->name('admin.index');
+        Route::get('/upcoming', 'getUpcomingBookings')->name('admin.upcoming');
+        Route::get('/pending', 'getPendingBookings')->name('admin.pending');
+        Route::post('/disable', 'disableDate')->name('admin.disable');
+        Route::post('/approve', 'approveBooking')->name('admin.approve');
+        Route::post('/register', 'register')->name('admin.register');
+    });
+});

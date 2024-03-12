@@ -20,7 +20,7 @@ class Booking extends Model
      */
     protected $fillable = [
         'id',
-        'customer_id',
+        'user_id',
         'vehicle_make',
         'vehicle_model',
         'booked_on',
@@ -30,6 +30,6 @@ class Booking extends Model
 
     public function customer(): HasOne
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasOne(User::class);
     }
 }
