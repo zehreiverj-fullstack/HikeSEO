@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Local Setup
+
+The project uses Laravel and Vue with InertiaJS. Additionally, it utilizes MySQL as its database and SendGrid as its third-party email service provider. Developers are required to set up the `.env` file in the root directory and use `.env.example` as a guideline. Importantly, the database and mail sections in the `.env` file are principal. Lastly, to run the project, developers must open a terminal at the root directory and input `php artisan serve`.  
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
